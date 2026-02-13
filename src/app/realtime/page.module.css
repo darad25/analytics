@@ -1,0 +1,197 @@
+.header {
+    margin-bottom: 32px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+}
+
+.mainPanel {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mapContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mapTitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.map {
+    flex: 1;
+    background: url("https://www.transparenttextures.com/patterns/carbon-fibre-big.png"), rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    position: relative;
+    border: 1px solid var(--border);
+}
+
+.marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: ripple 2s infinite;
+}
+
+@keyframes ripple {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 50px;
+        height: 50px;
+        opacity: 0;
+    }
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.marker:hover .tooltip {
+    opacity: 1;
+}
+
+.statsPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.statHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.icon {
+    color: var(--primary);
+}
+
+.statValue {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.statSub {
+    font-size: 14px;
+    color: #10b981;
+}
+
+.pulseBar {
+    height: 4px;
+    background: var(--surface-hover);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.barFill {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.5s ease;
+}
+
+.logCard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.logs {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.logItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.logDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainPanel {
+        height: 350px;
+    }
+
+    .statValue {
+        font-size: 22px;
+    }
+
+    .logItem {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainPanel {
+        height: 300px;
+    }
+}
