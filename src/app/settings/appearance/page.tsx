@@ -23,7 +23,7 @@ export default function AppearanceSettings() {
                     {themes.map((t) => (
                         <button
                             key={t.id}
-                            onClick={() => setTheme(t.id as any)}
+                            onClick={() => setTheme(t.id as "cyber-dark" | "night-owl" | "light")}
                             style={{
                                 background: t.bg,
                                 border: theme === t.id ? `2px solid ${t.color}` : '1px solid var(--border)',

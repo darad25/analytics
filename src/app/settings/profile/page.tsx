@@ -1,4 +1,4 @@
-import { Mail, Lock } from "lucide-react";
+import { Mail } from "lucide-react";
 import styles from "../page.module.css";
 
 export default function ProfileSettings() {
