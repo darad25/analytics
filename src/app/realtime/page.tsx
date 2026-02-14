@@ -3,8 +3,6 @@
 import DashboardShell from "@/components/layout/DashboardShell";
 import styles from "./page.module.css";
 import {
-    Activity,
-    MapPin,
     Globe,
     Eye,
     Zap

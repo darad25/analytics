@@ -4,7 +4,6 @@ import RevenueChart from "@/components/charts/RevenueChart";
 import styles from "./page.module.css";
 import {
     BarChart3,
-    TrendingUp,
     Target,
     Zap
 } from "lucide-react";

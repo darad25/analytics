@@ -15,17 +15,21 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [theme, setThemeState] = useState<Theme>("cyber-dark");
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem("aura-dashboard-theme") as Theme;
-        if (savedTheme) {
-            setThemeState(savedTheme);
-            document.documentElement.setAttribute("data-theme", savedTheme);
+        if (typeof window !== 'undefined') {
+            const savedTheme = localStorage.getItem("aura-dashboard-theme") as Theme;
+            if (savedTheme) {
+                setThemeState(savedTheme);
+                document.documentElement.setAttribute("data-theme", savedTheme);
+            }
         }
     }, []);
 
     const setTheme = (newTheme: Theme) => {
         setThemeState(newTheme);
-        localStorage.setItem("aura-dashboard-theme", newTheme);
-        document.documentElement.setAttribute("data-theme", newTheme);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem("aura-dashboard-theme", newTheme);
+            document.documentElement.setAttribute("data-theme", newTheme);
+        }
     };
 
     return (
@@ -37,8 +41,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
 export function useTheme() {
     const context = useContext(ThemeContext);
+    // If context is undefined (e.g. during build-time SSR outside of a provider passthrough),
+    // return a default fallback instead of throwing to prevent build crashes.
     if (context === undefined) {
-        throw new Error("useTheme must be used within a ThemeProvider");
+        return {
+            theme: "cyber-dark" as Theme,
+            setTheme: () => { },
+        };
     }
     return context;
 }

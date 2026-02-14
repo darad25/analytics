@@ -1,141 +1,272 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+.dashboardHeader {
   display: flex;
-  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.dashboardHeader h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+}
+
+.exportBtn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exportBtn:hover {
+  background: var(--surface-hover);
+  border-color: var(--primary);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.statIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--surface-hover);
+  border-radius: 10px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  color: var(--primary);
 }
 
-.main {
+.change {
   display: flex;
-  min-height: 100vh;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.positive {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.negative {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.statContent {
+  margin-bottom: 16px;
+}
+
+.statLabel {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.miniChart {
+  height: 40px;
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  position: relative;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+.sparkline {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  position: absolute;
+  bottom: 0;
+  border-radius: 2px;
+  opacity: 0.3;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
   gap: 24px;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.mainChart {
+  min-height: 400px;
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+  flex-direction: column;
 }
 
-.ctas a {
+.chartHeader {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  margin-bottom: 24px;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
+.chartActions {
+  display: flex;
   gap: 8px;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.chartBtn,
+.activeChartBtn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.activeChartBtn {
+  background: var(--surface-hover);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.chartContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chartPlaceholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.sideList {
+  display: flex;
+  flex-direction: column;
+}
+
+.sideList h3 {
+  margin-bottom: 24px;
+}
+
+.transactionList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.transactionItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tIcon {
+  width: 36px;
+  height: 36px;
+  background: var(--surface-hover);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.tInfo {
+  flex: 1;
+}
+
+.tTitle {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tDate {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tAmount {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.viewMoreBtn {
+  width: 100%;
+  padding: 12px;
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--foreground);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewMoreBtn:hover {
+  border-color: var(--primary);
+}
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .contentGrid {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
   }
 
-  .intro {
+  .dashboardHeader {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 16px;
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .dashboardHeader h1 {
+    font-size: 24px;
+  }
+
+  .statValue {
+    font-size: 24px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (max-width: 480px) {
+  .contentGrid {
+    gap: 16px;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .mainChart {
+    min-height: 300px;
   }
 }
